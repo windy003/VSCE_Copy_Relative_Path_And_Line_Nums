@@ -1,0 +1,30 @@
+{
+  "name": "copy-relative-path-line",
+  "displayName": "Copy Relative Path and Line",
+  "description": "Copy the active file's workspace-relative path and current line number.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:copyRelativePathLine.copy"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copyRelativePathLine.copy",
+        "title": "Copy Relative Path and Line Number"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "copyRelativePathLine.copy",
+        "key": "ctrl+shift+alt+c",
+        "when": "editorTextFocus && !editorReadonly"
+      }
+    ]
+  }
+}
