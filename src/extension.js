@@ -26,8 +26,16 @@ function activate(context) {
 
     // Always use forward slashes so the copied path is portable across platforms.
     relativePath = relativePath.split(path.sep).join('/');
-    const lineNumber = editor.selection.active.line + 1;
-    const result = `${relativePath}:${lineNumber}`;
+    // selection.start/end are normalized, so this works regardless of drag direction.
+    const { start, end } = editor.selection;
+    let firstLine = start.line + 1;
+    let lastLine = end.line + 1;
+    // A selection that stops at column 0 of the next line doesn't really include that line.
+    if (lastLine > firstLine && end.character === 0) {
+      lastLine -= 1;
+    }
+    const lineRange = firstLine === lastLine ? `${firstLine}` : `${firstLine}-${lastLine}`;
+    const result = `${relativePath}:${lineRange}`;
 
     await vscode.env.clipboard.writeText(result);
     vscode.window.setStatusBarMessage(`已复制: ${result}`, 2500);

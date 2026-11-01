@@ -4,11 +4,13 @@ A small Cursor/VS Code extension that copies the active editor's path relative t
 
 Example: `folder1/folder2/file3.py:56`
 
+With a multi-line selection, the line range is copied instead: `folder1/folder2/file3.py:2-3`
+
 ## Shortcut
 
 `Ctrl+Shift+Alt+C`
 
-The line number is 1-based and follows the active cursor position. On macOS, the shortcut is contributed as `Ctrl+Shift+Alt+C` as well.
+The line number is 1-based and follows the cursor position, or the selected lines when a selection spans more than one line. On macOS, the shortcut is contributed as `Ctrl+Shift+Alt+C` as well.
 
 ## Install locally
 
